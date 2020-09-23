@@ -81,9 +81,10 @@ sigma.parsers.json('data.json', {
         defaultEdgeType: 'curved'
     }
 }, function(s) {
-    s.startForceAtlas2()
+    s.startForceAtlas2();
+    window.setTimeout(function() {s.killForceAtlas2()}, 10000);
+
 });
-window.setTimeout(function() {s.killForceAtlas2()}, 10000);
 </script>
 
 </body>
