@@ -67,7 +67,7 @@
 
 <body>
 <!-- Add 1 buttons-->
-<button type="button" onclick="myfunction()">Add</button>
+<button type="button" onclick="force("s")">Add</button>
 <!-- Add 2 buttons-->
 
   
@@ -89,7 +89,7 @@ sigma.parsers.json('data.json', {
         defaultEdgeType: 'curve',
         labelThreshold: 16
     }
-}, var myfunction = function(s) {
+}, function force(s) {
     s.startForceAtlas2({barnesHutOptimize: true, slowDown:2});
     window.setTimeout(function() {s.killForceAtlas2()}, 10000);
 
