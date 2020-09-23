@@ -67,8 +67,7 @@
 
 <body>
 <!-- Add 1 buttons-->
-<button type="button" onclick="force(s)">force</button>
-<!-- Add 2 buttons-->
+<p id="demo">Click me.</p>
 
   
 <div id="container"></div>
@@ -95,7 +94,10 @@ sigma.parsers.json('data.json', {
 
   
 
-});
+}, document.getElementById("demo").addEventListener("click", force(s));
+
+
+                  );
 </script>  
 
 </body>
