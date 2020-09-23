@@ -66,10 +66,11 @@
 </head>
 
 <body>
+<!-- Add 1 buttons-->
+<button type="button" onclick="addnodes()">Add</button>
 <!-- Add 2 buttons-->
-<button type="button" onclick="changeColor('blue')">Blue</button>
-<button type="button" onclick="changeColor('red')">Red</button>
 
+  
 <div id="container"></div>
 <script src="sigma.core.js"></script>
 <script src="sigma.parsers.json.js"></script>
@@ -95,10 +96,18 @@ sigma.parsers.json('data.json', {
   
 
 });
-  
-
-
 </script>
+  
+<script>
+ var addnodes = function(a){
+      s.graph.addNode({
+        id: Math.random(),
+        size: 20,
+        x: Math.random(),
+        y: Math.random(),
+      });
+}
+</script>  
 
 </body>
 </html>
