@@ -68,7 +68,6 @@
 <body>
 <!-- Add 1 buttons-->
 <p id="demo">Click me.</p>
-
   
 <div id="container"></div>
 <script src="sigma.core.js"></script>
@@ -94,11 +93,17 @@ sigma.parsers.json('data.json', {
 
   
 
-}, document.getElementById("demo").addEventListener("click", force(s));
-
-
-                  );
+});
 </script>  
 
+<script>
+document.getElementById("demo").addEventListener("click", myFunction);
+
+function myFunction() {
+  document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+}
+</script>
+  
+  
 </body>
 </html>
