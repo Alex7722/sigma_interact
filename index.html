@@ -46,35 +46,43 @@
 <script src="./src/misc/sigma.misc.bindDOMEvents.js"></script>
 <script src="./src/misc/sigma.misc.drawHovers.js"></script>
 <!-- END SIGMA IMPORTS -->
-<script src="./plugins/sigma.parsers.json/sigma.parsers.json.js"></script>
-<div id="container">
-  <style>
-    #graph-container {
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      position: absolute;
-    }
-  </style>
-  <div id="graph-container"></div>
-</div>
+
+<html>
+<head>
+<style type="text/css">
+  #container {
+    max-width: 400px;
+    height: 400px;
+    margin: auto;
+  }
+</style>
+</head>
+<body>
+<div id="container"></div>
+<script src="sigma.core.js"></script>
+<script src="sigma.parsers.json.js"></script>
+<script src="./plugins/sigma.layout.forceAtlas2/worker.js"></script>
+<script src="./plugins/sigma.layout.forceAtlas2/supervisor.js"></script>
 <script>
-/**
- * Here is just a basic example on how to properly display a graph
- * exported from Gephi as a JSON file, with the JSON Exporter plugin from
- * the Oxford Internet Institute:
- *
- *  > https://marketplace.gephi.org/plugin/json-exporter/
- *
- * The plugin sigma.parsers.json can load and parse the JSON graph file,
- * and instantiate sigma when the graph is received.
- *
- * The object given as the second parameter is the base of the instance
- * configuration object. The plugin will just add the "graph" key to it
- * before the instanciation.
- */
-sigma.parsers.json('data.json', {
-  container: 'graph-container'
+  sigma.parsers.json('data.json', {
+    container: 'container',
+    settings: {
+      defaultNodeColor: '#ec5148'
+    }
+  });
+
+  s = new sigma({
+  graph: g,
+  container: 'container',
+  settings: {
+    drawEdges: false
+  }
 });
+
+  // Start the ForceAtlas2 algorithm:
+s.startForceAtlas2({worker: true, barnesHutOptimize: false});
 </script>
+
+</script>
+</body>
+</html>
