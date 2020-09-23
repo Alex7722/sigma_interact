@@ -85,7 +85,20 @@ sigma.parsers.json('data.json', {
     s.startForceAtlas2({barnesHutOptimize: true, slowDown:2});
     window.setTimeout(function() {s.killForceAtlas2()}, 10000);
 
+  
+  s.bind('clickNode', function(e) {
+  if (e.data.node.isSelected) {
+    e.data.node.color = "#666";
+    e.data.node.isSelected = false;
+  } else {
+    e.data.node.color = "#0A0";
+    e.data.node.isSelected = true;
+  }
+  s.refresh();  
 });
+  
+
+
 </script>
 
 </body>
