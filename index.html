@@ -69,19 +69,10 @@
     settings: {
       defaultNodeColor: '#ec5148'
     }
-  });
-
-  s = new sigma({
-  graph: g,
-  container: 'container',
-  settings: {
-    drawEdges: false
-  }
+  }, function(s) {
+    s.startForceAtlas2()
 });
 
-  // Start the ForceAtlas2 algorithm:
-s.startForceAtlas2({worker: true, barnesHutOptimize: false});
-</script>
 
 </script>
 </body>
