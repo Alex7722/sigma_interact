@@ -67,7 +67,7 @@
 
 <body>
 <!-- Add 1 buttons-->
-<button type="button" onclick="addnodes()">Add</button>
+<button type="button" onclick="test()">Add</button>
 <!-- Add 2 buttons-->
 
   
@@ -89,24 +89,13 @@ sigma.parsers.json('data.json', {
         defaultEdgeType: 'curve',
         labelThreshold: 16
     }
-}, function(s) {
+}, function test(s) {
     s.startForceAtlas2({barnesHutOptimize: true, slowDown:2});
     window.setTimeout(function() {s.killForceAtlas2()}, 10000);
 
   
 
 });
-</script>
-  
-<script>
- var addnodes = function(a){
-      s.graph.addNode({
-        id: 25252525454,
-        size: 20,
-        x: 5,
-        y: 5,
-      });
-}
 </script>  
 
 </body>
