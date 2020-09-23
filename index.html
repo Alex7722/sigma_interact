@@ -82,7 +82,7 @@ sigma.parsers.json('data.json', {
         labelThreshold: 16
     }
 }, function(s) {
-    s.startForceAtlas2();
+    s.startForceAtlas2(barnesHutOptimize: true);
     window.setTimeout(function() {s.killForceAtlas2()}, 10000);
 
 });
