@@ -92,22 +92,6 @@ sigma.parsers.json('data.json', {
     s.startForceAtlas2({barnesHutOptimize: true, slowDown:2});
     window.setTimeout(function() {s.killForceAtlas2()}, 10000);
 
-  
-
-}, var dragListener = sigma.plugins.dragNodes(s, s.renderers[0]);
-
-dragListener.bind('startdrag', function(event) {
-  console.log(event);
-});
-dragListener.bind('drag', function(event) {
-  console.log(event);
-});
-dragListener.bind('drop', function(event) {
-  console.log(event);
-});
-dragListener.bind('dragend', function(event) {
-  console.log(event);
-});
 
 });
 </script>  
