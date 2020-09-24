@@ -50,6 +50,7 @@
 <script src="./plugins/sigma.renderers.edgeLabels/sigma.canvas.edges.labels.def.js"></script>
 <script src="./plugins/sigma.renderers.edgeLabels/sigma.canvas.edges.labels.curve.js"></script>
 <script src="./plugins/sigma.renderers.edgeLabels/sigma.canvas.edges.labels.curvedArrow.js"></script>
+<script src="./plugins/sigma.plugins.dragNodes/sigma.plugins.dragNodes.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 
 <html>
@@ -93,7 +94,22 @@ sigma.parsers.json('data.json', {
 
   
 
+}, var dragListener = sigma.plugins.dragNodes(s, s.renderers[0]);
+
+dragListener.bind('startdrag', function(event) {
+  console.log(event);
 });
+dragListener.bind('drag', function(event) {
+  console.log(event);
+});
+dragListener.bind('drop', function(event) {
+  console.log(event);
+});
+dragListener.bind('dragend', function(event) {
+  console.log(event);
+});
+
+);
 </script>  
  
   
