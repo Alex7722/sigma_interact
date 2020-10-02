@@ -1,240 +1,197 @@
-<!-- START SIGMA IMPORTS -->
-<script src="./src/sigma.core.js"></script>
-<script src="./src/conrad.js"></script>
-<script src="./src/utils/sigma.utils.js"></script>
-<script src="./src/utils/sigma.polyfills.js"></script>
-<script src="./src/sigma.settings.js"></script>
-<script src="./src/classes/sigma.classes.dispatcher.js"></script>
-<script src="./src/classes/sigma.classes.configurable.js"></script>
-<script src="./src/classes/sigma.classes.graph.js"></script>
-<script src="./src/classes/sigma.classes.camera.js"></script>
-<script src="./src/classes/sigma.classes.quad.js"></script>
-<script src="./src/classes/sigma.classes.edgequad.js"></script>
-<script src="./src/captors/sigma.captors.mouse.js"></script>
-<script src="./src/captors/sigma.captors.touch.js"></script>
-<script src="./src/renderers/sigma.renderers.canvas.js"></script>
-<script src="./src/renderers/sigma.renderers.webgl.js"></script>
-<script src="./src/renderers/sigma.renderers.svg.js"></script>
-<script src="./src/renderers/sigma.renderers.def.js"></script>
-<script src="./src/renderers/webgl/sigma.webgl.nodes.def.js"></script>
-<script src="./src/renderers/webgl/sigma.webgl.nodes.fast.js"></script>
-<script src="./src/renderers/webgl/sigma.webgl.edges.def.js"></script>
-<script src="./src/renderers/webgl/sigma.webgl.edges.fast.js"></script>
-<script src="./src/renderers/webgl/sigma.webgl.edges.arrow.js"></script>
-<script src="./src/renderers/canvas/sigma.canvas.labels.def.js"></script>
-<script src="./src/renderers/canvas/sigma.canvas.hovers.def.js"></script>
-<script src="./src/renderers/canvas/sigma.canvas.nodes.def.js"></script>
-<script src="./src/renderers/canvas/sigma.canvas.edges.def.js"></script>
-<script src="./src/renderers/canvas/sigma.canvas.edges.curve.js"></script>
-<script src="./src/renderers/canvas/sigma.canvas.edges.arrow.js"></script>
-<script src="./src/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
-<script src="./src/renderers/canvas/sigma.canvas.edgehovers.def.js"></script>
-<script src="./src/renderers/canvas/sigma.canvas.edgehovers.curve.js"></script>
-<script src="./src/renderers/canvas/sigma.canvas.edgehovers.arrow.js"></script>
-<script src="./src/renderers/canvas/sigma.canvas.edgehovers.curvedArrow.js"></script>
-<script src="./src/renderers/canvas/sigma.canvas.extremities.def.js"></script>
-<script src="./src/renderers/svg/sigma.svg.utils.js"></script>
-<script src="./src/renderers/svg/sigma.svg.nodes.def.js"></script>
-<script src="./src/renderers/svg/sigma.svg.edges.def.js"></script>
-<script src="./src/renderers/svg/sigma.svg.edges.curve.js"></script>
-<script src="./src/renderers/svg/sigma.svg.labels.def.js"></script>
-<script src="./src/renderers/svg/sigma.svg.hovers.def.js"></script>
-<script src="./src/middlewares/sigma.middlewares.rescale.js"></script>
-<script src="./src/middlewares/sigma.middlewares.copy.js"></script>
-<script src="./src/misc/sigma.misc.animation.js"></script>
-<script src="./src/misc/sigma.misc.bindEvents.js"></script>
-<script src="./src/misc/sigma.misc.bindDOMEvents.js"></script>
-<script src="./src/misc/sigma.misc.drawHovers.js"></script>
-<!-- END SIGMA IMPORTS -->
-<script src="./plugins/sigma.renderers.edgeLabels/settings.js"></script>
-<script src="./plugins/sigma.renderers.edgeLabels/sigma.canvas.edges.labels.def.js"></script>
-<script src="./plugins/sigma.renderers.edgeLabels/sigma.canvas.edges.labels.curve.js"></script>
-<script src="./plugins/sigma.renderers.edgeLabels/sigma.canvas.edges.labels.curvedArrow.js"></script>
-<script src="https://d3js.org/d3.v4.min.js"></script>
-
+<!DOCTYPE html>
 <html>
 <head>
-  
-<style type="text/css">
-
-    body {
-      font-family:"avenir next", Arial, sans-serif;
-      font-size: 12px;
-      color: #696969;
-    }
-
-    #play-button {
-      position: absolute;
-      top: 140px;
-      left: 50px;
-      background: #f08080;
-      padding-right: 26px;
-      border-radius: 3px;
-      border: none;
-      color: white;
-      margin: 0;
-      padding: 0 12px;
-      width: 60px;
-      cursor: pointer;
-      height: 30px;
-    }
-
-    #play-button:hover {
-      background-color: #696969;
-    }    
-    
-    .ticks {
-      font-size: 10px;
-    }
-
-    .track,
-    .track-inset,
-    .track-overlay {
-      stroke-linecap: round;
-    }
-
-    .track {
-      stroke: #000;
-      stroke-opacity: 0.3;
-      stroke-width: 10px;
-    }
-
-    .track-inset {
-      stroke: #dcdcdc;
-      stroke-width: 8px;
-    }
-
-    .track-overlay {
-      pointer-events: stroke;
-      stroke-width: 50px;
-      stroke: transparent;
-      cursor: crosshair;
-    }
-
-    .handle {
-      fill: #fff;
-      stroke: #000;
-      stroke-opacity: 0.5;
-      stroke-width: 1.25px;
-    }
-
- 
-  #container {
-    max-width: 1440px;
-    height: 900px;
-    margin: auto;
-  }
-</style>
+	<title>Sigma Network</title>
+	<meta charset="utf-8">
+	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+	<script src="assets/js/sigma.min.js"></script>
+	<script src="assets/js/sigma.parsers.json.min.js"></script>
+	<script src="assets/js/sigma.forceAtlas2.worker.js"></script>
+	<script src="assets/js/sigma.forceAtlas2.supervisor.js"></script>
+	<script src="assets/js/sigma.pathfinding.astar.js"></script>
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<style>
+		#network-graph {
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			position: absolute;
+		}
+	</style>
 </head>
-
 <body>
-<div id="vis">
-  <button id="play-button">Play</button>
-</div>
+	<div id="network-graph"></div>
+
 <script>
 
-var formatDateIntoYear = d3.timeFormat("%Y");
-var formatDate = d3.timeFormat("%b %Y");
-var parseDate = d3.timeParse("%m/%d/%y");
+//Disable right click context menu in network-graph div
+//Right click is used to make all nodes and edges visible
+document.getElementById('network-graph').oncontextmenu = function (e) {
+    e.preventDefault();
+};
 
-var startDate = new Date("2004-11-01"),
-    endDate = new Date("2017-04-01");
+//Add a method to the graph that returns all neighbors of a node
+sigma.classes.graph.addMethod('neighbors', function(nodeId) {
+	var k,
+		neighbors = {},
+		index = this.allNeighborsIndex[nodeId] || {};
 
-var margin = {top:50, right:50, bottom:0, left:50},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+	for (k in index)
+		neighbors[k] = this.nodesIndex[k];
 
-var svg = d3.select("#vis")
-    .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom);  
-
-////////// slider //////////
-
-var moving = false;
-var currentValue = 0;
-var targetValue = width;
-
-var playButton = d3.select("#play-button");
-    
-var x = d3.scaleTime()
-    .domain([startDate, endDate])
-    .range([0, targetValue])
-    .clamp(true);
-
-var slider = svg.append("g")
-    .attr("class", "slider")
-    .attr("transform", "translate(" + margin.left + "," + height/5 + ")");
-
-slider.append("line")
-    .attr("class", "track")
-    .attr("x1", x.range()[0])
-    .attr("x2", x.range()[1])
-  .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
-    .attr("class", "track-inset")
-  .select(function() { return this.parentNode.appendChild(this.cloneNode(true)); })
-    .attr("class", "track-overlay")
-    .call(d3.drag()
-        .on("start.interrupt", function() { slider.interrupt(); })
-        .on("start drag", function() {
-          currentValue = d3.event.x;
-          update(x.invert(currentValue)); 
-        })
-    );
-
-slider.insert("g", ".track-overlay")
-    .attr("class", "ticks")
-    .attr("transform", "translate(0," + 18 + ")")
-  .selectAll("text")
-    .data(x.ticks(10))
-    .enter()
-    .append("text")
-    .attr("x", x)
-    .attr("y", 10)
-    .attr("text-anchor", "middle")
-    .text(function(d) { return formatDateIntoYear(d); });
-
-var handle = slider.insert("circle", ".track-overlay")
-    .attr("class", "handle")
-    .attr("r", 9);
-
-var label = slider.append("text")  
-    .attr("class", "label")
-    .attr("text-anchor", "middle")
-    .text(formatDate(startDate))
-    .attr("transform", "translate(0," + (-25) + ")")
-</script>
-
-
-<div id="container"></div>
-<script src="sigma.core.js"></script>
-<script src="sigma.parsers.json.js"></script>
-<script src="./plugins/sigma.layout.forceAtlas2/worker.js"></script>
-<script src="./plugins/sigma.layout.forceAtlas2/supervisor.js"></script>
-<script>
-sigma.parsers.json('data.json', {
-    container: 'container',
-    renderer: {
-        container: document.getElementById('container'),
-        type: 'canvas'
-    },
-    settings: {
-        minNodeSize: 1,
-        maxNodeSize: 30,
-        defaultEdgeType: 'curve',
-        labelThreshold: 16
-    }
-}, function(s) {
-    s.startForceAtlas2({barnesHutOptimize: false});
-    window.setTimeout(function() {s.killForceAtlas2()}, 10000);
-
-  
-
+	return neighbors;
 });
-  
 
+//Import JSON network as object and initiate a sigma network graph, 
+//run other functions that require a sequential order
+var jnet, s;
+$.getJSON("data.json", function(response){
+		jnet = response;
+		s = new sigma({
+			graph: jnet,
+			container: 'network-graph'
+	   });
+	   buildNetwork();
+});
+
+//---------------------Network section-------------------------//
+
+//Create a function to optimize network layout with forceAtlas2
+function layoutOptimize(s) {
+	
+	//Start the ForceAtlas2 algorithm to optimize network layout
+	s.startForceAtlas2({worker: false, barnesHutOptimize: false, slowDown: 1000, iterationsPerRender: 1000});
+	
+	//Set time interval to allow layout algorithm to converge on a good state
+	var t = 0;
+	var interval = setInterval(function() {
+		t += 1;
+		if (t >= 5) {
+			clearInterval(interval);
+			s.stopForceAtlas2();
+		}
+	}, 100);
+}
+
+//Create the function to build the network graph
+function buildNetwork() {
+	//Save the initial colors of the nodes and edges
+	s.graph.nodes().forEach(function(n) {
+		n.originalColor = n.color;
+	});
+	s.graph.edges().forEach(function(e) {
+		e.originalColor = e.color;
+	});
+	
+	//Override initial edge colors
+	s.settings({
+		edgeColor: 'default',
+		defaultEdgeColor: '#999'
+	});
+
+	// Refresh the graph to see the changes:
+	s.refresh();
+
+	//When a node is hovered, check all nodes to see which are neighbors.
+	//Set neighbor nodes to dark blue, else keep node as original color.
+	//Do the same for the edges, coloring connections to neighbors blue.
+	s.bind('overNode', function(e) {
+		var nodeId = e.data.node.id,
+			toKeep = s.graph.neighbors(nodeId);
+			toKeep[nodeId] = e.data.node;
+			
+		s.graph.nodes().forEach(function(n) {
+			if (toKeep[n.id])
+				n.color = '#36648B';
+			else
+				n.color = n.originalColor;
+		});
+
+		s.graph.edges().forEach(function(e) {
+			if (toKeep[e.source] && toKeep[e.target])
+				e.color = '#0099CC';
+			else
+				e.color = e.originalColor;
+		});
+		
+		//Refresh graph to update colors
+		s.refresh();
+	});
+	
+	//Return nodes and edges to original color after mose moves off a node (stops hovering)
+	s.bind('outNode', function(e) {
+	
+		s.graph.nodes().forEach(function(n) {
+			n.color = n.originalColor;
+		});
+		
+		s.graph.edges().forEach(function(e) {
+			e.color = e.originalColor;
+		});
+		
+		//Refresh graph to update colors
+		s.refresh();
+	});
+	
+	//When a node is clicked, check all nodes to see which are neighbors.
+	//Set all non-neighbors to grey and hide them, else set node to original color.
+	//Change the clicked node's original color to green.
+	//Do the same for the edges, keeping the ones with both endpoints colored.
+	//Clicking consecutive nodes will show the joint network all clicked nodes.
+	s.bind('clickNode', function(e) {
+		var nodeId = e.data.node.id,
+			toKeep = s.graph.neighbors(nodeId);
+			toKeep[nodeId] = e.data.node;
+
+		s.graph.nodes().forEach(function(n) {
+			if (toKeep[n.id] == toKeep[nodeId])
+				n.originalColor = '#008000';
+			else if (toKeep[n.id])
+				n.color = n.originalColor;
+			else
+				n.color = '#eee',
+				n.hidden = true;
+		});
+
+		s.graph.edges().forEach(function(e) {
+			if (toKeep[e.source] && toKeep[e.target])
+				e.color = e.originalColor;
+			else
+				e.color = '#eee',
+				e.hidden = true;
+		});
+
+		//Refresh graph to update colors
+		s.refresh();
+	});
+
+	//When the stage is right-clicked, return nodes and edges to original colors
+	s.bind('rightClickStage', function(e) {
+		s.graph.nodes().forEach(function(n) {
+			n.originalColor = "#2d2d3c",
+			n.color = n.originalColor,
+			n.hidden = false;
+		});
+
+		s.graph.edges().forEach(function(e) {
+			e.color = e.originalColor,
+			e.hidden = false;
+		});
+
+		//Refresh graph to update colors
+		s.refresh();
+	});
+	
+	
+	//Start the ForceAtlas2 algorithm to optimize network layout
+	//s.startForceAtlas2({worker: true, barnesHutOptimize: false});
+	//Execute network graph layout optimizer
+	layoutOptimize(s);
+}
 
 </script>
+
 
 </body>
 </html>
